@@ -8,7 +8,6 @@ import paymentStripe from "./paymentStripe";
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
-  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [addressSetter, setAddressSetter] = useState({
     name: "",
@@ -20,7 +19,7 @@ const Cart = () => {
 
   const { name, address, state, country, zip } = addressSetter;
 
-  const { user, token } = isAuthenticated();
+  const { user } = isAuthenticated();
 
   useEffect(() => {
     setProducts(loadcart());

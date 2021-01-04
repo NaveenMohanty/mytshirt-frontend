@@ -11,7 +11,6 @@ const Card = ({
   reload = undefined,
 }) => {
   const [redirect, setRedirect] = useState(false);
-  const [count, setCount] = useState(product.count);
 
   const cardTitle = product ? product.name : "Product Name not Available!";
 

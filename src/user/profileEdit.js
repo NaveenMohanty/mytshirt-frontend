@@ -13,7 +13,7 @@ const ProfileEdit = () => {
     success: false,
   });
   const [checkPass, setCheckPass] = useState("");
-  const { user, token, roll } = isAuthenticated();
+  const { user, token } = isAuthenticated();
   const { name, email, password, error, success } = values;
 
   const preload = () => {
@@ -177,7 +177,6 @@ const ProfileEdit = () => {
       title="Edit Profile"
       description="A page to edit your profile details"
     >
-      
       {successMessage()}
       {errorMessage()}
       {signUpForm()}

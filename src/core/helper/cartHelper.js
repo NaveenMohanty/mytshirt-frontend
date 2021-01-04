@@ -28,9 +28,7 @@ export const totalAmount = () => {
     }
   }
 
-  products.map((product) => {
-    amount += product.price;
-  });
+  products.map((product) => (amount += product.price));
   return amount;
 };
 

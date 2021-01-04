@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../styles.css";
-import { API } from "../backend";
 import Base from "./Base";
 import Card from "./Card";
 import { getProducts } from "./helper/coreapicalls";
@@ -21,8 +20,24 @@ const Home = () => {
   useEffect(() => {
     loadAllProduct();
   }, []);
+
+  const errorMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            {error}
+          </div>
+        </div>
+      </div>
+    );
+  };
   return (
     <Base title="Home Page" description="Welcome to the Tshirt Store">
+      {errorMessage()}
       <div className="row text-center">
         <div className="row">
           {products.map((product, index) => {

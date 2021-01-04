@@ -5,8 +5,7 @@ import Base from "../core/Base";
 
 const UserDashBoard = () => {
   const {
-    user: { name, email, role },
-    token,
+    user: { name, email },
   } = isAuthenticated();
 
   const adminRightSide = () => {

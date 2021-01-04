@@ -9,7 +9,7 @@ const UpdateCategory = ({ match }) => {
   const [tempname, setTempname] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const { user, token } = isAuthenticated();
+  const { token } = isAuthenticated();
 
   const preload = () => {
     getcategory(match.params.categoryId)
@@ -40,8 +40,9 @@ const UpdateCategory = ({ match }) => {
     setSuccess(false);
     console.log(name);
     //backend request fired
-    updateCategory(match.params.categoryId, match.params.userId, token, {name})
-      .then((data) => {
+    updateCategory(match.params.categoryId, match.params.userId, token, {
+      name,
+    }).then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
