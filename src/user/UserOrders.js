@@ -8,7 +8,7 @@ const UserOrders = () => {
   const [orders, setOrders] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { user, token, roll } = isAuthenticated();
+  const { user, token, role } = isAuthenticated();
   const preload = () => {
     getUserOrders(user, token).then((data) => {
       if (data.error) {
@@ -66,12 +66,15 @@ const UserOrders = () => {
   };
   return (
     <Base title="Your Orders" description="All your orders and their Status">
-      <Link
-        to={roll ? `/admin/dashboard` : `/user/dashboard`}
-        className="btn btn-md btn-info ml-3 mb-3"
-      >
-        {roll ? `Admin Home` : `User Home`}
-      </Link>
+      {role === 0 ? (
+        <Link to="/user/dashboard" className="btn btn-md btn-info ml-3 mb-3">
+          Back
+        </Link>
+      ) : (
+        <Link to="/admin/dashboard" className="btn btn-md btn-info ml-3 mb-3">
+          Back
+        </Link>
+      )}
       {loadingComp()}
       {errorComp()}
       <table class="table table-hover table-dark">
