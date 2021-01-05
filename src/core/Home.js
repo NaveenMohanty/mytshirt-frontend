@@ -7,20 +7,38 @@ import { getProducts } from "./helper/coreapicalls";
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const loadAllProduct = () => {
     getProducts().then((data) => {
       if (data.error) {
         setError(data.error);
+        setLoading(false);
       } else {
         setProducts(data);
+        setLoading(false);
       }
     });
   };
   useEffect(() => {
+    setLoading(true);
     loadAllProduct();
   }, []);
 
+  const loadingComp = () => {
+    return (
+      loading && (
+        <div class="d-flex align-items-center mb-3">
+          <strong>Loading...</strong>
+          <div
+            class="spinner-border ml-auto"
+            role="status"
+            aria-hidden="true"
+          ></div>
+        </div>
+      )
+    );
+  };
   const errorMessage = () => {
     return (
       <div className="row">
@@ -37,6 +55,7 @@ const Home = () => {
   };
   return (
     <Base title="Home Page" description="Welcome to the Tshirt Store">
+      {loadingComp()}
       {errorMessage()}
       <div className="row text-center">
         <div className="row">
